@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="0" skipped="0" tests="1" time="18.561" timestamp="2022-08-10T11:53:52.151680" hostname="Kirans-MacBook-Pro.local"><testcase classname="test.TestSuite.CleanupTest" name="test_unit_test_0" time="18.545" /></testsuite></testsuites>

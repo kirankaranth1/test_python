@@ -1,0 +1,74 @@
+{
+  "fabricId" : "585",
+  "components" : [ {
+    "PipelineComponent" : {
+      "id" : "1567/pipelines/customers_orders",
+      "nodeName" : "Pipeline_0",
+      "path" : "dbfs:/FileStore/prophecy/artifacts/saas/app/pipelines/1659930658896/1567/customers_orders-1.0-py3-none-any.whl",
+      "language" : "python"
+    }
+  } ],
+  "request" : {
+    "CreateNewJobRequest" : {
+      "format" : "MULTI_TASK",
+      "name" : "daily",
+      "job_clusters" : [ {
+        "job_cluster_key" : "Small-79996135",
+        "new_cluster" : {
+          "spark_version" : "10.4.x-scala2.12",
+          "node_type_id" : "i3.xlarge",
+          "spark_conf" : {
+            "prophecy.metadata.job.uri" : "1567/jobs/daily",
+            "prophecy.metadata.fabric.id" : "585",
+            "prophecy.execution.service.url" : "wss://execution.dp.app.prophecy.io/eventws",
+            "prophecy.metadata.is.interactive.run" : "false"
+          },
+          "num_workers" : 1,
+          "driver_node_type_id" : "i3.xlarge"
+        }
+      } ],
+      "email_notifications" : { },
+      "tasks" : [ {
+        "task_key" : "Pipeline_0",
+        "new_cluster" : {
+          "spark_version" : "10.4.x-scala2.12",
+          "node_type_id" : "i3.xlarge",
+          "spark_conf" : {
+            "prophecy.metadata.job.uri" : "1567/jobs/daily",
+            "prophecy.metadata.fabric.id" : "585",
+            "prophecy.execution.service.url" : "wss://execution.dp.app.prophecy.io/eventws",
+            "prophecy.metadata.is.interactive.run" : "false"
+          },
+          "num_workers" : 1,
+          "driver_node_type_id" : "i3.xlarge"
+        },
+        "python_wheel_task" : {
+          "package_name" : "customers_orders",
+          "entry_point" : "main",
+          "parameters" : [ "-C", "fabricName=project" ]
+        },
+        "libraries" : [ {
+          "maven" : {
+            "coordinates" : "io.prophecy:prophecy-libs_2.12:5.0.4-3.2.0",
+            "repo" : "https://prophecyio.jfrog.io/artifactory/default-sbt-release/"
+          }
+        }, {
+          "pypi" : {
+            "package" : "prophecy-libs==1.1.14"
+          }
+        }, {
+          "whl" : "dbfs:/FileStore/prophecy/artifacts/saas/app/pipelines/1659930658896/1567/customers_orders-1.0-py3-none-any.whl"
+        } ],
+        "email_notifications" : { },
+        "max_retries" : 0
+      } ],
+      "max_concurrent_runs" : 1,
+      "schedule" : {
+        "quartz_cron_expression" : "0 0 0 * * ? *",
+        "timezone_id" : "GMT",
+        "pause_status" : "PAUSED"
+      }
+    }
+  },
+  "clusterConfig" : "{\"spark_version\":\"10.4.x-scala2.12\",\"node_type_id\":\"i3.xlarge\",\"spark_conf\":{\"prophecy.metadata.job.uri\":\"1567/jobs/daily\",\"prophecy.metadata.fabric.id\":\"585\",\"prophecy.execution.service.url\":\"wss://execution.dp.app.prophecy.io/eventws\",\"prophecy.metadata.is.interactive.run\":\"false\"},\"num_workers\":1,\"driver_node_type_id\":\"i3.xlarge\"}"
+}

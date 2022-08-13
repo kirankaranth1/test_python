@@ -1,0 +1,173 @@
+name: HelloWorld
+description: ''
+version: 0.0.1-SNAPSHOT
+author: ''
+language: python
+buildSystem: wheel
+pipelines:
+  pipelines/customers_orders:
+    name: customers_orders
+    description: Aggregates total spending's for each customer
+    author: kiran@prophecy.io
+    mode: batch
+    language: python
+    createdAt: '2022-06-14 15:59:16'
+    datasets:
+      inputs:
+      - 1567/datasets/orders
+      - 1567/datasets/customers
+      outputs:
+      - 1567/datasets/customers_orders
+    dependencies: {}
+  pipelines/report_top_customers:
+    name: report_top_customers
+    description: Prepare a report based on customers' spending
+    author: kiran@prophecy.io
+    mode: batch
+    language: python
+    createdAt: '2022-06-14 15:59:16'
+    datasets:
+      inputs:
+      - 1567/datasets/customers_orders
+      outputs:
+      - 1567/datasets/report
+    dependencies: {}
+  pipelines/join_agg_sort:
+    name: join_agg_sort
+    description: Show an example of joining two datasets (customers and orders), aggregating
+      (sales by customer), sorting (by totals)
+    author: kiran@prophecy.io
+    mode: batch
+    language: python
+    createdAt: '2022-06-14 15:59:16'
+    datasets:
+      inputs:
+      - 1567/datasets/orders
+      - 1567/datasets/customers
+      outputs:
+      - 1567/datasets/customer_totals
+    dependencies: {}
+  pipelines/p4:
+    name: p4
+    description: ''
+    author: kiran@prophecy.io
+    mode: batch
+    language: python
+    createdAt: '2022-07-19 10:48:06'
+    datasets:
+      inputs: []
+      outputs: []
+    dependencies: {}
+datasets:
+  datasets/orders:
+    name: orders
+    description: All the orders placed by the customers
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:15'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:15'
+  datasets/customers_orders:
+    name: customers_orders
+    description: Customers by total of their purchases
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:16'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:16'
+  datasets/customers:
+    name: customers
+    description: All the customers
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:16'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:16'
+  datasets/historic_events_flat:
+    name: historic_events_flat
+    description: Historic events flat
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:16'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:16'
+  datasets/report:
+    name: report
+    description: Final report for the bank
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:15'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:15'
+  datasets/old_events:
+    name: old_events
+    description: Old events data
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:16'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:16'
+  datasets/customer_totals:
+    name: customer_totals
+    description: Customers by total of their purchases
+    author: kiran@prophecy.io
+    createdAt: '2022-06-14 15:59:15'
+    physicalDatasets:
+      project:
+        fabricId: 585
+        datasetType: File
+        description: ''
+        author: kiran@prophecy.io
+        createdAt: '2022-06-14 15:59:15'
+templates: {}
+jobs:
+  jobs/daily:
+    name: daily
+    description: ''
+    fabricUID: 585
+    scheduler:
+      Databricks: {}
+    jobSize: Small
+    scheduleCron: 0 0 0 * * ? *
+    timeout: null
+    alerting:
+      emails: ''
+      onStart: false
+      onSuccess: false
+      onFailure: false
+    pipelines:
+    - 1567/pipelines/customers_orders
+    jobClusterMode:
+      clusterMode:
+        Multi: {}
+      clusterId: null
+    enabled: null
+    createdAt: '2022-08-07 16:24:22'
+    author: kiran@prophecy.io
+libraries: []
+subgraphs: {}
+dependencies: '[]'
