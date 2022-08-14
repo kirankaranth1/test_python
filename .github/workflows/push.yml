@@ -28,3 +28,5 @@ jobs:
           pip install build pytest wheel prophecy-build-tool-test pytest-html pyspark
       - name: Run PBT build
         run: pbt build --path .
+      - name: List all files
+        run: ls -ltraR
