@@ -18,17 +18,19 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Set up Python
+      - name: Set up Python 3.x
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+      # Install all python dependencies 
+      # prophecy-libs not included here because prophecy-build-tool takes care of it by reading each pipeline's setup.py
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install build pytest wheel prophecy-build-tool-test==1.0.4.8 pytest-html pyspark
+          pip install build pytest wheel pytest-html pyspark  prophecy-build-tool-test==1.0.4.8
       - name: Run PBT build
         run: pbt build --path .
-      - name: Run PBT build
+      - name: Run PBT test
         run: pbt test --path .
       - name: Run PBT deploy
         run: pbt deploy --path .
