@@ -26,7 +26,7 @@ jobs:
       # prophecy-libs not included here because prophecy-build-tool takes care of it by reading each pipeline's setup.py
       - name: Install dependencies
         run: |
-          python3 -m pip3 install --upgrade pip
+          python3 -m pip install --upgrade pip
           pip3 install build pytest wheel pytest-html pyspark  prophecy-build-tool-test==1.0.4.10
       - name: Run PBT build
         run: pbt build --path .
