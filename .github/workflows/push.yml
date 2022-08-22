@@ -4,7 +4,7 @@ on: [push]
 
 env:
   DATABRICKS_HOST: "https://dbc-147abc45-b6c7.cloud.databricks.com"
-  DATABRICKS_TOKEN: "dapia756ad5e7ea2698af48c80e1eb1e6563"
+  DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
   FABRIC_NAME: "project"
 
 jobs:
