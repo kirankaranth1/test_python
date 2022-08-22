@@ -1,6 +1,9 @@
 name: Test CI
 
-on: [push]
+on: 
+  push:
+    branches:
+      - 'main'
 
 env:
   DATABRICKS_HOST: "https://dbc-147abc45-b6c7.cloud.databricks.com"
