@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip3 install build pytest wheel pytest-html pyspark  prophecy-build-tool-test==1.0.4.10
+          pip3 install build pytest wheel pytest-html pyspark  prophecy-build-tool-test
       - name: Run PBT build
         run: pbt build --path .
       - name: Run PBT test
